@@ -1,0 +1,45 @@
+[
+  {
+    "title": "DevFlow Control Room",
+    "status": "진행 중 (In Progress - v0.8)",
+    "badge": "Active Development",
+    "period": "2026.06 - 현재",
+    "summary": "분산 환경에서 실행되는 데이터 파이프라인(ETL) 및 비동기 작업의 실행 상태를 실시간으로 시각화하고 이상 징후를 감지하는 경량 모니터링 대시보드입니다.",
+    "features": [
+      "웹소켓(WebSocket) 기반 실시간 작업 상태 스트리밍 및 실패 알림(Slack/Discord Webhook)",
+      "DAG(Directed Acyclic Graph) 형태의 파이프라인 의존성 인터랙티브 시각화",
+      "장애 발생 시 특정 노드부터 자동 재시도(Re-run) 및 데이터 롤백 트리거 기능"
+    ],
+    "tech_stack": ["PHP 8.3", "FastAPI", "PostgreSQL", "Tailwind CSS", "Docker"],
+    "github": "https://github.com/jinseong-choi/devflow-control-room"
+  },
+  {
+    "title": "DocuPulse AI (스마트 영수증 & 문서 분석 파이프라인)",
+    "status": "클로즈 베타 (Beta)",
+    "badge": "Testing",
+    "period": "2026.02 - 2026.05",
+    "summary": "다양한 형식(PDF, 이미지, 이메일 영수증 .eml)의 지출 내역서를 자동으로 파싱하고 일자별/프로젝트별로 정산 집계를 자동화하는 지능형 파서 도구입니다.",
+    "features": [
+      ".eml 이메일 파일 및 이미지 OCR 데이터에서 주문번호, 결제금액, 부가세 정밀 추출",
+      "중복 결제 및 누락 트랜잭션 자동 검증 엔진 탑재",
+      "엑셀(Excel) 및 마크다운 정산 보고서 자동 생성"
+    ],
+    "tech_stack": ["Python", "PHP", "SQLite", "OpenCV", "Tesseract"],
+    "github": "https://github.com/jinseong-choi/docupulse-ai"
+  },
+  {
+    "title": "Modern PHP Portfolio & Blog Engine",
+    "status": "출시 완료 (Stable)",
+    "badge": "Live",
+    "period": "2026.09 - 현재",
+    "summary": "데이터베이스 서버 관리 부담 없이 마크다운(.md) 파일과 JSON 데이터만으로 초고속 렌더링을 지원하는 올인원 개발자 포트폴리오 엔진입니다.",
+    "features": [
+      "정적 파일 수준의 초고속 로딩 속도 (<10ms)",
+      "코드 구문 강조(Syntax Highlighting) 및 반응형 모던 다크모드 완벽 지원",
+      "Oracle Cloud Always Free 환경에서 월 비용 0원으로 운영 가능하도록 최적화"
+    ],
+    "tech_stack": ["PHP 8.3", "Parsedown", "Tailwind CSS", "Nginx", "Docker"],
+    "github": "https://github.com/jinseong-choi/my-portfolio",
+    "demo": "http://localhost:8000"
+  }
+]

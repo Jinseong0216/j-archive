@@ -1,0 +1,14 @@
+{
+    "name": "jinseong/portfolio",
+    "description": "Developer Portfolio, Resume and Blog in Modern PHP",
+    "type": "project",
+    "require": {
+        "php": ">=8.2",
+        "erusev/parsedown": "^1.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}
