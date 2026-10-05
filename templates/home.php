@@ -10,8 +10,8 @@
             <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white leading-tight">
                 안녕하세요, <br class="hidden sm:block" />
                 <span class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-                    <?= App\View::e($profile['name'] ?? '최진성') ?>
-                </span>입니다.
+                    <?= App\View::e($profile['name'] ?? '개발자 J') ?>
+                </span> 입니다.
             </h1>
 
             <p class="text-lg font-medium text-gray-700 dark:text-gray-300 leading-relaxed">

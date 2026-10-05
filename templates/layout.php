@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= isset($title) ? App\View::e($title) . ' | ' : '' ?><?= App\View::e($profile['name'] ?? 'Jinseong Choi') ?></title>
+    <title><?= isset($title) ? App\View::e($title) . ' | ' : '' ?><?= App\View::e($profile['name'] ?? '개발자 J') ?></title>
     <meta name="description" content="<?= App\View::e($profile['bio'] ?? 'Software Engineer Portfolio') ?>">
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
@@ -49,10 +49,10 @@
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <a href="/" class="flex items-center gap-3 group">
                 <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-400 flex items-center justify-center text-white font-bold text-lg shadow-sm group-hover:scale-105 transition-transform">
-                    JC
+                    J
                 </div>
                 <div class="flex flex-col">
-                    <span class="font-bold text-base tracking-tight text-gray-900 dark:text-white"><?= App\View::e($profile['name'] ?? '최진성') ?></span>
+                    <span class="font-bold text-base tracking-tight text-gray-900 dark:text-white"><?= App\View::e($profile['name'] ?? '개발자 J') ?></span>
                     <span class="text-xs text-gray-500 dark:text-gray-400">Software Engineer</span>
                 </div>
             </a>
@@ -94,7 +94,7 @@
     <footer class="border-t border-gray-200 dark:border-gray-800/80 bg-white dark:bg-cardbg/40 text-gray-500 dark:text-gray-400 py-8 text-xs transition-colors">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="flex items-center gap-2">
-                <span>© <?= date('Y') ?> <?= App\View::e($profile['name'] ?? 'Jinseong Choi') ?>. All rights reserved.</span>
+                <span>© <?= date('Y') ?> <?= App\View::e($profile['name'] ?? '개발자 J') ?>. All rights reserved.</span>
             </div>
             <div class="flex items-center gap-4 text-gray-400">
                 <span>Built with <strong class="text-indigo-400">PHP 8.3</strong> &amp; Markdown</span>
