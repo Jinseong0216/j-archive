@@ -2,14 +2,19 @@
     <!-- Resume Header -->
     <section class="border-b border-gray-200 dark:border-borderbg pb-8">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
-            <div>
-                <span class="text-xs font-bold text-brand-600 dark:text-brand-400 uppercase tracking-widest">Resume &amp; Career History</span>
-                <h1 class="text-3xl sm:text-4xl font-black text-gray-900 dark:text-white mt-1">
-                    <?= App\View::e($profile['name']) ?>
-                </h1>
-                <p class="text-base text-gray-600 dark:text-gray-300 mt-1 font-medium">
-                    <?= App\View::e($profile['title']) ?>
-                </p>
+            <div class="flex items-center gap-4">
+                <div class="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl overflow-hidden ring-2 ring-indigo-500/30 flex-shrink-0 bg-gray-900 shadow-md">
+                    <img src="/images/avatar.jpg" alt="<?= App\View::e($profile['name']) ?>" class="w-full h-full object-cover">
+                </div>
+                <div>
+                    <span class="text-xs font-bold text-brand-600 dark:text-brand-400 uppercase tracking-widest">Resume &amp; Career History</span>
+                    <h1 class="text-3xl sm:text-4xl font-black text-gray-900 dark:text-white mt-0.5">
+                        <?= App\View::e($profile['name']) ?>
+                    </h1>
+                    <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300 font-medium">
+                        <?= App\View::e($profile['title']) ?>
+                    </p>
+                </div>
             </div>
             
             <div class="flex items-center gap-2">

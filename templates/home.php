@@ -38,10 +38,15 @@
         </div>
 
         <!-- Avatar / Visual Card -->
-        <div class="w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 rounded-2xl bg-gradient-to-br from-indigo-600 via-indigo-700 to-purple-800 p-1 shadow-2xl flex-shrink-0">
-            <div class="w-full h-full rounded-2xl bg-cardbg flex flex-col items-center justify-center text-center p-4 border border-indigo-500/30">
-                <span class="text-3xl sm:text-5xl mb-1">💻</span>
-                <span class="text-xs font-mono text-indigo-400 font-bold">&lt;Developer /&gt;</span>
+        <div class="relative group flex-shrink-0">
+            <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-70 blur-md group-hover:opacity-100 transition duration-500"></div>
+            <div class="relative w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 rounded-2xl overflow-hidden border-2 border-indigo-500/40 shadow-2xl bg-gray-900">
+                <img src="/images/avatar.jpg" alt="개발자 J" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <!-- Online status indicator badge -->
+            <div class="absolute -bottom-2 -right-2 bg-white dark:bg-cardbg px-3 py-1 rounded-full border border-gray-200 dark:border-borderbg shadow-lg flex items-center gap-1.5 text-xs font-semibold text-gray-700 dark:text-gray-300">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span>Active</span>
             </div>
         </div>
     </div>
@@ -132,23 +137,38 @@
         </a>
     </div>
 
-    <div class="space-y-4">
-        <?php foreach (array_slice($blogPosts, 0, 3) as $post): ?>
-        <a href="/blog/<?= App\View::e($post['slug']) ?>" class="group block p-5 rounded-xl bg-white dark:bg-cardbg border border-gray-200 dark:border-borderbg hover:border-indigo-500 transition-all">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-1 text-xs text-gray-500 dark:text-gray-400">
-                <span class="font-medium text-brand-600 dark:text-brand-400"><?= App\View::e($post['category'] ?? 'Tech') ?></span>
-                <div class="flex items-center gap-2">
-                    <time><?= App\View::e($post['date']) ?></time>
-                    <span>•</span>
-                    <span><?= App\View::e($post['reading_time']) ?>분 읽기</span>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <?php foreach (array_slice($blogPosts, 0, 3) as $post): 
+            $cat = strtolower(trim($post['category'] ?? 'Tech'));
+            $badgeColor = match (true) {
+                str_contains($cat, 'arch') => 'bg-indigo-500/10 text-indigo-500 dark:text-indigo-400 border-indigo-500/20',
+                str_contains($cat, 'tech') || str_contains($cat, 'review') => 'bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border-cyan-500/20',
+                str_contains($cat, 'retro') || str_contains($cat, 'career') => 'bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20',
+                default => 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20'
+            };
+        ?>
+        <a href="/blog/<?= App\View::e($post['slug']) ?>" class="group flex flex-col justify-between p-5 rounded-2xl bg-white dark:bg-cardbg border border-gray-200 dark:border-borderbg hover:border-brand-500 dark:hover:border-brand-500 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+            <div>
+                <div class="flex items-center justify-between gap-1 mb-2.5 text-xs text-gray-500 dark:text-gray-400">
+                    <span class="px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider border <?= $badgeColor ?>">
+                        <?= App\View::e($post['category'] ?? 'Tech') ?>
+                    </span>
+                    <span class="text-[11px]"><?= App\View::e($post['date']) ?></span>
                 </div>
+                <h3 class="text-base font-bold text-gray-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors line-clamp-2 leading-snug">
+                    <?= App\View::e($post['title']) ?>
+                </h3>
+                <p class="text-xs text-gray-600 dark:text-gray-400 mt-2 line-clamp-3 leading-relaxed">
+                    <?= App\View::e($post['summary']) ?>
+                </p>
             </div>
-            <h3 class="text-base font-bold text-gray-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">
-                <?= App\View::e($post['title']) ?>
-            </h3>
-            <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">
-                <?= App\View::e($post['summary']) ?>
-            </p>
+            <div class="pt-3 mt-4 border-t border-gray-100 dark:border-gray-800/80 flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+                <span class="text-[11px]"><?= App\View::e($post['reading_time']) ?>분 읽기</span>
+                <span class="font-semibold text-brand-600 dark:text-brand-400 group-hover:translate-x-1 transition-transform flex items-center gap-1 text-[11px]">
+                    <span>읽기</span>
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </span>
+            </div>
         </a>
         <?php endforeach; ?>
     </div>

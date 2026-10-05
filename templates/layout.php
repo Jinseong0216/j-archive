@@ -48,8 +48,8 @@
     <header class="sticky top-0 z-50 backdrop-blur-md bg-white/80 dark:bg-darkbg/80 border-b border-gray-200 dark:border-gray-800 transition-colors">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <a href="/" class="flex items-center gap-3 group">
-                <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-400 flex items-center justify-center text-white font-bold text-lg shadow-sm group-hover:scale-105 transition-transform">
-                    J
+                <div class="relative w-9 h-9 rounded-xl overflow-hidden ring-2 ring-indigo-500/30 group-hover:ring-indigo-500 group-hover:scale-105 transition-all shadow-sm flex-shrink-0 bg-gray-900">
+                    <img src="/images/avatar.jpg" alt="<?= App\View::e($profile['name'] ?? '개발자 J') ?>" class="w-full h-full object-cover">
                 </div>
                 <div class="flex flex-col">
                     <span class="font-bold text-base tracking-tight text-gray-900 dark:text-white"><?= App\View::e($profile['name'] ?? '개발자 J') ?></span>

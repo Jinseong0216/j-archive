@@ -2,6 +2,15 @@
 
 declare(strict_types=1);
 
+// Built-in PHP server static file handling
+if (php_sapi_name() === 'cli-server') {
+    $path = parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH);
+    $file = __DIR__ . $path;
+    if ($path !== '/' && is_file($file)) {
+        return false;
+    }
+}
+
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use App\Router;
@@ -88,21 +97,23 @@ $router->get('/projects/{slug}', function (string $slug) use ($contentService) {
 $router->get('/blog', function () use ($contentService) {
     $profile = $contentService->getProfile();
     $blogPosts = $contentService->getBlogPosts();
+    $categories = $contentService->getBlogCategories();
 
     View::render('blog/index', [
         'title' => '기술 블로그',
         'currentRoute' => 'blog',
         'profile' => $profile,
         'blogPosts' => $blogPosts,
+        'categories' => $categories,
     ]);
 });
 
 // 6. Blog Post Detail
 $router->get('/blog/{slug}', function (string $slug) use ($contentService) {
-    $post = $contentService->getBlogPost($slug);
+    $data = $contentService->getBlogPostWithNeighbors($slug);
     $profile = $contentService->getProfile();
 
-    if (!$post) {
+    if (!$data || !$data['post']) {
         http_response_code(404);
         View::render('404', [
             'title' => '글을 찾을 수 없습니다',
@@ -113,10 +124,12 @@ $router->get('/blog/{slug}', function (string $slug) use ($contentService) {
     }
 
     View::render('blog/show', [
-        'title' => $post['title'],
+        'title' => $data['post']['title'],
         'currentRoute' => 'blog',
         'profile' => $profile,
-        'post' => $post,
+        'post' => $data['post'],
+        'prevPost' => $data['prev'],
+        'nextPost' => $data['next'],
     ]);
 });
 

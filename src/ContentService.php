@@ -82,6 +82,56 @@ class ContentService
         return file_exists($path) ? $this->parseMarkdownFile($path) : null;
     }
 
+    public function getBlogCategories(): array
+    {
+        $posts = $this->getBlogPosts();
+        $categories = ['전체' => count($posts)];
+        foreach ($posts as $post) {
+            $cat = $post['category'] ?? 'Tech';
+            $categories[$cat] = ($categories[$cat] ?? 0) + 1;
+        }
+        return $categories;
+    }
+
+    public function getBlogPostWithNeighbors(string $slug): ?array
+    {
+        $posts = $this->getBlogPosts();
+        $targetIndex = null;
+        foreach ($posts as $index => $post) {
+            if ($post['slug'] === $slug) {
+                $targetIndex = $index;
+                break;
+            }
+        }
+
+        if ($targetIndex === null) {
+            return null;
+        }
+
+        $current = $this->getBlogPost($slug);
+        if (!$current) {
+            return null;
+        }
+
+        $prev = ($targetIndex < count($posts) - 1) ? [
+            'slug' => $posts[$targetIndex + 1]['slug'],
+            'title' => $posts[$targetIndex + 1]['title'],
+            'category' => $posts[$targetIndex + 1]['category'] ?? 'Tech',
+        ] : null;
+
+        $next = ($targetIndex > 0) ? [
+            'slug' => $posts[$targetIndex - 1]['slug'],
+            'title' => $posts[$targetIndex - 1]['title'],
+            'category' => $posts[$targetIndex - 1]['category'] ?? 'Tech',
+        ] : null;
+
+        return [
+            'post' => $current,
+            'prev' => $prev,
+            'next' => $next,
+        ];
+    }
+
     private function readJson(string $relativePath): array
     {
         $fullPath = $this->baseDir . '/' . ltrim($relativePath, '/');
