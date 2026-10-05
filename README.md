@@ -116,16 +116,24 @@ demo: "https://..."
 
 ---
 
-## ☁️ 오라클 클라우드 (Always Free) 배포 가이드
+## 🐳 도커(Docker) 기반 실행 및 배포
 
-1. 오라클 클라우드 평생 무료 Ubuntu 인스턴스 생성
-2. Nginx 및 PHP 8.3-FPM 설치:
+```bash
+# 도커 컴포즈로 한 번에 실행 (Nginx + PHP 8.3-FPM)
+docker compose up -d
+```
+
+---
+
+## ☁️ 배포 가이드 (오라클 클라우드 / VPS / PaaS)
+
+1. 저장소 복제:
    ```bash
-   sudo apt install -y nginx php8.3-fpm php8.3-cli php8.3-mbstring php8.3-xml
+   git clone https://github.com/Jinseong0216/j-archive.git
+   cd j-archive
    ```
-3. 저장소 클론 및 권한 설정:
+2. 도커로 즉시 가동:
    ```bash
-   git clone https://github.com/jinseong-choi/my-portfolio.git /var/www/my-portfolio
-   sudo chown -R www-data:www-data /var/www/my-portfolio
+   docker compose up -d
    ```
-4. `nginx.conf.example` 파일을 `/etc/nginx/sites-available/default` 에 복사 후 `sudo systemctl restart nginx` 실행
+3. 포트 80(HTTP) 및 443(HTTPS) 방화벽을 열어두면 즉시 전 세계 접속이 가능합니다.
