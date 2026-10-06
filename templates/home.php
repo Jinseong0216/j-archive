@@ -67,6 +67,125 @@
         </div>
     </div>
 
+    <!-- Section 0: [가장 추천] 포트폴리오 + 동생 식당 2개 사이트 동시 가동 -->
+    <div class="space-y-4 p-4 sm:p-5 rounded-2xl bg-indigo-950/40 border border-indigo-500/30">
+        <div class="flex items-center justify-between border-b border-indigo-500/20 pb-3">
+            <div class="flex items-center gap-2 text-sm sm:text-base font-bold text-amber-300">
+                <span>🔥</span>
+                <span>[서버 노트북] 포트폴리오(8000) + 동생 식당(8002) 2개 사이트 동시 가동</span>
+            </div>
+            <span class="text-[11px] font-mono text-indigo-300 bg-indigo-500/20 px-2.5 py-0.5 rounded-full border border-indigo-500/30">원클릭 6단계</span>
+        </div>
+
+        <!-- 1단계: 기존 프로세스 정리 -->
+        <div class="space-y-1.5">
+            <div class="flex items-center justify-between text-xs text-gray-300 font-semibold">
+                <span class="flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-red-400"></span>
+                    <span>1단계. 기존 PHP 서버 모두 끄기 (포트 충돌 클리어)</span>
+                </span>
+                <span class="text-[11px] text-gray-500 font-mono">pkill</span>
+            </div>
+            <div class="relative flex items-center bg-gray-950 rounded-xl border border-gray-800 p-3 pr-24 overflow-hidden group">
+                <code id="cmd-dual-pkill" class="text-xs sm:text-sm font-mono text-rose-300 break-all select-all">pkill -f "php -S"</code>
+                <button type="button" onclick="copySnippet('cmd-dual-pkill', this)" class="absolute right-2 sm:right-3 px-3.5 py-2 text-xs font-semibold rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white shadow-md transition-all flex items-center gap-1.5 flex-shrink-0 cursor-pointer">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                    <span>복사</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- 2단계: 내 포트폴리오 8000번 가동 -->
+        <div class="space-y-1.5">
+            <div class="flex items-center justify-between text-xs text-gray-300 font-semibold">
+                <span class="flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-indigo-400"></span>
+                    <span>2단계. 내 포트폴리오(j-archive) 최신 코드 받고 8000번으로 가동</span>
+                </span>
+                <span class="text-[11px] text-gray-500 font-mono">portfolio :8000</span>
+            </div>
+            <div class="relative flex items-center bg-gray-950 rounded-xl border border-gray-800 p-3 pr-24 overflow-hidden group">
+                <code id="cmd-dual-portfolio" class="text-xs sm:text-sm font-mono text-indigo-300 break-all select-all">cd ~/j-archive &amp;&amp; git pull &amp;&amp; nohup php -S 0.0.0.0:8000 -t public public/index.php &gt; portfolio.log 2&gt;&amp;1 &amp;</code>
+                <button type="button" onclick="copySnippet('cmd-dual-portfolio', this)" class="absolute right-2 sm:right-3 px-3.5 py-2 text-xs font-semibold rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white shadow-md transition-all flex items-center gap-1.5 flex-shrink-0 cursor-pointer">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                    <span>복사</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- 3단계: 동생 식당 8002번 가동 -->
+        <div class="space-y-1.5">
+            <div class="flex items-center justify-between text-xs text-gray-300 font-semibold">
+                <span class="flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                    <span>3단계. 동생 식당(Shokudo-Yeonje) 최신 코드 받고 8002번으로 가동</span>
+                </span>
+                <span class="text-[11px] text-gray-500 font-mono">shokudo :8002</span>
+            </div>
+            <div class="relative flex items-center bg-gray-950 rounded-xl border border-gray-800 p-3 pr-24 overflow-hidden group">
+                <code id="cmd-dual-shokudo" class="text-xs sm:text-sm font-mono text-emerald-300 break-all select-all">cd ~ &amp;&amp; ([ -d Shokudo-Yeonje ] || git clone https://github.com/Jinseong0216/Shokudo-Yeonje.git) &amp;&amp; cd Shokudo-Yeonje &amp;&amp; git pull &amp;&amp; nohup php -S 0.0.0.0:8002 -t public public/index.php &gt; shokudo.log 2&gt;&amp;1 &amp;</code>
+                <button type="button" onclick="copySnippet('cmd-dual-shokudo', this)" class="absolute right-2 sm:right-3 px-3.5 py-2 text-xs font-semibold rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white shadow-md transition-all flex items-center gap-1.5 flex-shrink-0 cursor-pointer">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                    <span>복사</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- 4단계: 2개 사이트 가동 상태 확인 -->
+        <div class="space-y-1.5">
+            <div class="flex items-center justify-between text-xs text-gray-300 font-semibold">
+                <span class="flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-sky-400"></span>
+                    <span>4단계. 2개 사이트가 나란히 실행 중인지 확인 (8000, 8002 둘 다 뜨면 성공!)</span>
+                </span>
+                <span class="text-[11px] text-gray-500 font-mono">ps aux</span>
+            </div>
+            <div class="relative flex items-center bg-gray-950 rounded-xl border border-gray-800 p-3 pr-24 overflow-hidden group">
+                <code id="cmd-dual-ps" class="text-xs sm:text-sm font-mono text-sky-300 break-all select-all">ps aux | grep "php -S"</code>
+                <button type="button" onclick="copySnippet('cmd-dual-ps', this)" class="absolute right-2 sm:right-3 px-3.5 py-2 text-xs font-semibold rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white shadow-md transition-all flex items-center gap-1.5 flex-shrink-0 cursor-pointer">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                    <span>복사</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- 5단계: 외부 공개 터널 2개 동시 열기 -->
+        <div class="space-y-1.5">
+            <div class="flex items-center justify-between text-xs text-gray-300 font-semibold">
+                <span class="flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-purple-400"></span>
+                    <span>5단계. 스마트폰/외부 접속용 Cloudflare 터널 2개 동시 실행</span>
+                </span>
+                <span class="text-[11px] text-gray-500 font-mono">cloudflared x2</span>
+            </div>
+            <div class="relative flex items-center bg-gray-950 rounded-xl border border-gray-800 p-3 pr-24 overflow-hidden group">
+                <code id="cmd-dual-tunnel" class="text-xs sm:text-sm font-mono text-purple-300 break-all select-all">nohup cloudflared tunnel --url http://localhost:8000 &gt; tunnel_portfolio.log 2&gt;&amp;1 &amp; nohup cloudflared tunnel --url http://localhost:8002 &gt; tunnel_shokudo.log 2&gt;&amp;1 &amp;</code>
+                <button type="button" onclick="copySnippet('cmd-dual-tunnel', this)" class="absolute right-2 sm:right-3 px-3.5 py-2 text-xs font-semibold rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white shadow-md transition-all flex items-center gap-1.5 flex-shrink-0 cursor-pointer">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                    <span>복사</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- 6단계: 발급된 외부 링크 2개 확인 -->
+        <div class="space-y-1.5">
+            <div class="flex items-center justify-between text-xs text-gray-300 font-semibold">
+                <span class="flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+                    <span>6단계. 카카오톡으로 보낼 외부 접속 주소 2개 확인</span>
+                </span>
+                <span class="text-[11px] text-gray-500 font-mono">check urls</span>
+            </div>
+            <div class="relative flex items-center bg-gray-950 rounded-xl border border-gray-800 p-3 pr-24 overflow-hidden group">
+                <code id="cmd-dual-urls" class="text-xs sm:text-sm font-mono text-amber-300 break-all select-all">grep -o 'https://[-a-zA-Z0-9\.]*\.trycloudflare\.com' tunnel_portfolio.log tunnel_shokudo.log</code>
+                <button type="button" onclick="copySnippet('cmd-dual-urls', this)" class="absolute right-2 sm:right-3 px-3.5 py-2 text-xs font-semibold rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white shadow-md transition-all flex items-center gap-1.5 flex-shrink-0 cursor-pointer">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                    <span>복사</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Section 1: Docker 4단계 가동 가이드 -->
     <div class="space-y-4">
         <div class="flex items-center gap-2 text-sm font-bold text-indigo-400 border-b border-gray-800/80 pb-2">
